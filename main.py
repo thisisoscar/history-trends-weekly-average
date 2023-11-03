@@ -4,7 +4,10 @@ from tkinter import filedialog
 
 def add_non_website_visits(row):
     if row.isna().iloc[2]:
-        row['top domain'] = row['url']
+        if row['url'].startswith('chrome-extension'):
+            row['top domain'] = 'chrome-extension://' + row['full domain']
+        else:
+            row['top domain'] = row['url']
     
     return row
 
