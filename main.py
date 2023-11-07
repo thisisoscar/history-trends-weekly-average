@@ -30,6 +30,8 @@ df = df.apply(add_non_website_visits, axis=1)
 
 all_top_domains = df['top domain'].unique()
 
+print(all_top_domains)
+
 start_date = df.iloc[-1]['date']
 end_date = df.iloc[0]['date']
 
@@ -37,7 +39,7 @@ date_range = pd.date_range(start_date, end_date, freq='D')
 
 rolling_df = pd.DataFrame()
 
-for i in range(0, len(date_range)-rolling_length):
+for i in range(0, len(date_range)-rolling_length+1):
     days = list(date_range[i:i+rolling_length])
     days = [i.date() for i in days]
     partial_df = df[df['date'].isin(days)]
